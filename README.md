@@ -15,20 +15,20 @@ sudo mv docker-compose-linux-x86_64 /usr/local/bin/docker-compose
 
 ### add user to group **docker**
 ```
-newgrp docker
+sudo newgrp docker
 sudo usermod -aG docker $USER
 ```
 
 ### deploy asterisk docker image
 ```
 git clone https://github.com/mlan/docker-asterisk.git
-cd demo
+cd docker-asterisk/demo
 ```
 add volum for asterisk config
 ```
 sudo chmod 775 -R /data/asterisk-conf/
 sudo chown -R $USER:docker /data/asterisk-conf/
-docker volume create --driver local \
+sudo docker volume create --driver local \
      --opt type=none \
      --opt device=/data/asterisk-conf \
      --opt o=bind asterisk-conf
@@ -36,6 +36,9 @@ docker volume create --driver local \
 
 ```
 $vim docker-compose.yml
+
+     volumes:
+          - asterisk-conf:/srv                      # Persistent storage
 volumes:
     asterisk-conf:
         external: true
