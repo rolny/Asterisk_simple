@@ -54,6 +54,7 @@ interactive with ***Asterisk CLI***
 
 ## setup pjsip.conf
 replace `pjsip.conf` to `/data/asterisk-conf/etc/asterisk/pjsip.conf`
+`mv /data/asterisk-conf/etc/asterisk/pjsip_wizrd.conf{,.bak}`
 
 ### NAT setup
 `local_net=[DOCKER_INET/MASK_LEN]`
